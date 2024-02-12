@@ -1,9 +1,8 @@
 import { createAction } from '@reduxjs/toolkit';
-import { login,logoutSuccess, isToken } from "../actions/loginAction";
 import axios from "axios";
+import {  login,logoutSuccess, isToken } from "../actions/loginAction";
 
 const BASE_URL = "http://localhost:3001/api/v1";
-
 
 // Action creators
 export const userSuccess = createAction('post/postSuccess');

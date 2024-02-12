@@ -1,5 +1,5 @@
-import { createAction } from '@reduxjs/toolkit';
 import axios from "axios";
+import { createAction } from '@reduxjs/toolkit';
 
 // Action creators
 export const loginSuccess = createAction('login/loginSuccess');
@@ -18,10 +18,11 @@ const BASE_URL = "http://localhost:3001/api/v1";
  * @param { Boolean } rememberMe 
  * @returns { Object }
  */
-const login = (email, password, rememberMe) => (dispatch) => {
+
+ export const  login = (email, password, rememberMe) => (dispatch) => {
     axios.post(BASE_URL + "/user/login", { email, password })
         .then((response) => {
-            if (rememberMe) {
+            if (!rememberMe) {
                 localStorage.setItem("token", JSON.stringify(response.data.body.token));
             } else {
                 sessionStorage.setItem("token", JSON.stringify(response.data.body.token));

@@ -1,39 +1,61 @@
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import argentBankLogo from '../../assets/images/argentBankLogo.png';
+import auth_service from '../../actions/userAction';
+import { logoClick } from '../../actions/loginAction';
 
-import { NavLink } from "react-router-dom";
-import argentBankLogo from "../../assets/images/argentBankLogo.png";
+/**
+ * Creates Nav component
+ * @returns { HTMLElement }
+ */
+const Header = () => {
+  const user= useSelector((state)=> state.user);
+  const isAuth= useSelector((state) => state.login.isAuth)
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-function Header() {
+  const onLogout= () => {
+    dispatch(auth_service.logout());
+    navigate('/')
+  }
 
-    return (
-        <nav className="main-nav">
-            <NavLink to="/" className="main-nav-logo">
-                <img
-                    className="main-nav-logo-image"
-                    src={argentBankLogo}
-                    alt="Argent Bank Logo"
-                />
-                <h1 className="sr-only">Argent Bank</h1>
-            </NavLink>
-
-            <div>
-                <NavLink to="/profile" className="main-nav-item">
-                    <i className="fa fa-user-circle"></i>
-                    <span id="nav-user-firstname"> Tony</span>
-                </NavLink>
-                <NavLink className="main-nav-item">
-                    <i className="fa fa-sign-out"></i>
-                    Sign Out
-                </NavLink>
-            </div>
-            <div>
-                <NavLink to="/login" className="main-nav-item">
-                    <i className="fa fa-user-circle"></i>
-                    Sign In
-                </NavLink>
-            </div>
-
-        </nav>
-    )
+  const onLogoClick= () => {
+    dispatch(logoClick())
+  }
+  
+  return (
+      <nav className="main-nav">
+        <Link className="main-nav-logo" onClick={onLogoClick} to="/" >
+          <img
+            className="main-nav-logo-image"
+            src={argentBankLogo}
+            alt="Argent Bank Logo"
+          />
+          <h1 className="sr-only">Argent Bank</h1>
+        </Link>
+        {
+        isAuth === false ?
+          <div>
+            <Link className="main-nav-item" to="/login">
+              <i className="fa fa-user-circle"></i>
+              Sign In
+            </Link>
+          </div> 
+          : isAuth === true ? 
+          <div className='main-nav-items'>
+            <Link className="main-nav-item" to="/profile">
+              <i className="fa fa-user-circle"></i>
+              {user.firstName}
+            </Link>
+            <span className="main-nav-item" onClick={onLogout}>
+              <i className="fa fa-sign-out"></i>
+              Sign Out
+            </span>
+          </div> : ""
+          }
+      </nav>
+  )
 }
 
 export default Header;
