@@ -5,36 +5,32 @@ import argentBankLogo from '../../assets/images/argentBankLogo.png';
 import auth_service from '../../actions/userAction';
 import { logoClick } from '../../actions/loginAction';
 
-/**
- * Creates Nav component
- * @returns { HTMLElement }
- */
 const Header = () => {
-  const user= useSelector((state)=> state.user);
-  const isAuth= useSelector((state) => state.login.isAuth)
+  const user = useSelector(state => state.user); // Assurez-vous que vous extrayez correctement les données de l'utilisateur
+  const isAuth = useSelector(state => state.login.isAuth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  const onLogout= () => {
+ 
+  const onLogout = () => {
     dispatch(auth_service.logout());
-    navigate('/')
-  }
+    navigate('/');
+  };
 
-  const onLogoClick= () => {
-    dispatch(logoClick())
-  }
+  const onLogoClick = () => {
+    dispatch(logoClick());
+  };
   
   return (
-      <nav className="main-nav">
-        <Link className="main-nav-logo" onClick={onLogoClick} to="/" >
-          <img
-            className="main-nav-logo-image"
-            src={argentBankLogo}
-            alt="Argent Bank Logo"
-          />
-          <h1 className="sr-only">Argent Bank</h1>
-        </Link>
-        {
+    <nav className="main-nav">
+      <Link className="main-nav-logo" onClick={onLogoClick} to="/">
+        <img
+          className="main-nav-logo-image"
+          src={argentBankLogo}
+          alt="Argent Bank Logo"
+        />
+        <h1 className="sr-only">Argent Bank</h1>
+      </Link>
+      {
         isAuth === false ?
           <div>
             <Link className="main-nav-item" to="/login">
@@ -46,16 +42,16 @@ const Header = () => {
           <div className='main-nav-items'>
             <Link className="main-nav-item" to="/profile">
               <i className="fa fa-user-circle"></i>
-              {user.firstName}
+              {user.firstName} {/* Assurez-vous que la clé correspond à celle dans vos données */}
             </Link>
             <span className="main-nav-item" onClick={onLogout}>
               <i className="fa fa-sign-out"></i>
               Sign Out
             </span>
           </div> : ""
-          }
-      </nav>
-  )
-}
+      }
+    </nav>
+  );
+};
 
 export default Header;

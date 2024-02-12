@@ -1,9 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-// Initial post state
+// Initial user state
 const userState = {
-    // Define the initial state properties for your post entity
-    // Example:
+    firstName: null,
     title: null,
     content: null,
     author: null,
@@ -11,54 +10,28 @@ const userState = {
     error: null,
 };
 
-// Post slice
-const userAction = createSlice({
-    name: "post",
+// User slice
+const userSlice = createSlice({
+    name: "user",
     initialState: userState,
     reducers: {
         userSuccess: (state, action) => {
-            // Update state properties based on the action payload
-            // Example:
-            state.title = action.payload.body.title;
-            state.content = action.payload.body.content;
-            state.author = action.payload.body.author;
-            state.id = action.payload.body.id;
+            Object.assign(state, action.payload.body); // Mettre à jour les propriétés de l'utilisateur
             state.error = null;
         },
         userFail: (state, action) => {
-            // Reset state properties and set error based on the action payload
-            // Example:
-            state.title = null;
-            state.content = null;
-            state.author = null;
-            state.id = null;
             state.error = action.payload.message;
         },
         userLogout: (state) => {
-            // Reset state properties on logout
-            // Example:
-            state.title = null;
-            state.content = null;
-            state.author = null;
-            state.id = null;
-            state.error = null;
+            Object.keys(userState).forEach(key => {
+                state[key] = userState[key]; // Réinitialiser toutes les propriétés de l'utilisateur
+            });
         },
-        usertUpdateSuccess: (state, action) => {
-            // Update state properties for an update success
-            // Example:
-            state.title = action.payload.body.title;
-            state.content = action.payload.body.content;
-            state.author = action.payload.body.author;
-            state.id = action.payload.body.id;
+        userUpdateSuccess: (state, action) => {
+            Object.assign(state, action.payload.body); // Mettre à jour les propriétés de l'utilisateur
             state.error = null;
         },
         userUpdateFail: (state, action) => {
-            // Update state properties for an update failure
-            // Example:
-            state.title = action.payload.body.title;
-            state.content = action.payload.body.content;
-            state.author = action.payload.body.author;
-            state.id = action.payload.body.id;
             state.error = action.payload.message;
         },
     },
@@ -70,8 +43,6 @@ export const {
     userLogout,
     userUpdateSuccess,
     userUpdateFail,
-} = userAction.actions;
+} = userSlice.actions;
 
-export const userReducer = userAction.reducer;
-
-
+export const userReducer = userSlice.reducer;
