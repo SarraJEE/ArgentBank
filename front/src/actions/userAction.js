@@ -8,7 +8,8 @@ const BASE_URL = "http://localhost:3001/api/v1";
 export const userSuccess = createAction('user/userSuccess');
 export const userFail = createAction('user/userFail');
 export const userLogout = createAction('user/userLogout');
-
+export const userUpdateSuccess = createAction('post/postUpdateSuccess');
+export const userUpdateFail = createAction('post/postUpdateFail');
 /**
  * Get user profile
  * @param {String} token 
@@ -31,6 +32,21 @@ export const userProfile = (value_token) => (dispatch) => {
  * @param {String} lastName 
  * @param {String} token 
  */
+
+export const updateProfile = (userName, value_token) => (dispatch) => {
+    const token= localStorage.getItem("token") !== null ? localStorage.getItem("token").slice(1,localStorage.getItem("token").length-1) : value_token;
+    axios.put(BASE_URL + "/user/profile",
+        { userName: userName },
+        { headers: { "Authorization": `Bearer ${token}` } 
+    })
+    .then((res)=>{
+        dispatch(userUpdateSuccess(res.data))
+        console.log(res.data)
+    })
+    .catch((err)=>{
+        dispatch(userUpdateFail(err.response))
+    })
+ }
 
 
 /**

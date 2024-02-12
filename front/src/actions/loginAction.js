@@ -23,7 +23,7 @@ export const login = (email, password, rememberMe) => (dispatch) => {
     axios.post(BASE_URL + "/user/login", { email, password })
         .then((response) => {
             const token = response.data.body.token;
-            if (rememberMe) {
+            if (!rememberMe) {
                 localStorage.setItem("token", JSON.stringify(token));
             } else {
                 sessionStorage.setItem("token", JSON.stringify(token));

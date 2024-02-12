@@ -34,6 +34,7 @@ const userSlice = createSlice({
         userUpdateFail: (state, action) => {
             state.error = action.payload.message;
         },
+       
     },
 });
 
