@@ -1,4 +1,4 @@
-// SignInForm.js
+
 import React from 'react';
 import LoginForm from '../../components/LoginForm/LoginForm';
 function Login() {
@@ -8,5 +8,4 @@ function Login() {
         </main>
     );
 }
-
 export default Login;

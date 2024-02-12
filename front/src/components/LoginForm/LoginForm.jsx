@@ -9,11 +9,11 @@ function LoginForm() {
       <form >
         <div className="input-wrapper">
           <label htmlFor="email">Email</label>
-          <input type="email" id="email"  />
+          <input type="email" id="email" />
         </div>
         <div className="input-wrapper">
           <label htmlFor="password">Password</label>
-          <input type="password" id="password"/>
+          <input type="password" id="password" />
         </div>
         <div className="input-remember">
           <input type="checkbox" id="remember-me" />

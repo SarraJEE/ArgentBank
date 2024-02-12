@@ -1,7 +1,6 @@
 import { dataAccounts } from "../../data/data";
 import Account from "../../components/Account/Account";
 
-
 function User() {
     return (
         <main className="main bg-dark">

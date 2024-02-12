@@ -299,20 +299,19 @@ body {
 		width: 200px;
 	}
 }
+
 .section-error {
-    color: white;
-    padding-bottom: 20px;
-    font-weight: bold;
+	color: white;
+	padding-bottom: 20px;
+	font-weight: bold;
 
-	
-}
+	a {
+		color: white;
+		text-decoration: none;
+		font-weight: 400;
 
-.section-error a {
-    color: white;
-    text-decoration: none;
-    font-weight: 400;
-}
-
-.section-error a:hover {
-    text-decoration: underline;
+		&:hover {
+			text-decoration: underline;
+		}
+	}
 }

@@ -1,5 +1,4 @@
 import { PropTypes } from 'prop-types';
-
 function Feature(props) {
     const ICON = props.icon;
     const ALT_IMG = props.altImg;

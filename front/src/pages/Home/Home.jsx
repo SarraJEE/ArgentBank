@@ -1,11 +1,9 @@
 
-
 import Feature from "../../components/Feature/Feature";
 import Banner from "../../components/Banner/Banner";
 import { dataFeatures } from "../../data/data"
 
 function Home() {
-   
     return (
         <div className="App">
             <Banner />

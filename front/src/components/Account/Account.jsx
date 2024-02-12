@@ -1,6 +1,5 @@
 
 import { PropTypes } from 'prop-types';
-
 function Account(props) {
     const ACCOUNT_TITLE = props.accountTitle;
     const ACCOUNT_AMOUNT = props.accountAmount;
@@ -21,7 +20,6 @@ function Account(props) {
         </section>
     )
 }
-
 function amountFormat(number) {
     return new Intl.NumberFormat('en-US').format(number);
 }
