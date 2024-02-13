@@ -1,7 +1,7 @@
 import { createAction } from '@reduxjs/toolkit';
 import axios from "axios";
-import { logoutSuccess, isToken } from "../actions/loginAction";
-import { login } from '../actions/loginAction';
+import { logoutSuccess, isToken } from "./loginAction";
+import { login } from './loginAction';
 const BASE_URL = "http://localhost:3001/api/v1";
 
 // Actions créées avec createAction

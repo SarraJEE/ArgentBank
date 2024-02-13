@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Account from '../../components/Account/Account';
-import auth_service from '../../actions/userAction';
+import auth_service from '../../redux/actions/userAction';
 import { dataAccounts } from '../../data/data';
 import EditName from '../../components/EditName/EditName';
 const User = () => {

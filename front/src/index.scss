@@ -315,3 +315,34 @@ body {
 		}
 	}
 }
+
+//*formulaire edit name
+.edit-inputs {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+}
+.edit-buttons{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+	
+}
+.edit-button-option{
+	display: block;
+	width: 10%;
+	padding: 8px;
+	font-size: 1.1rem;
+	font-weight: bold;
+	margin-top: 1rem;
+	border-color: #00bc77;
+	background-color: #00bc77;
+	color: #fff;
+	border-radius: 5%;
+
+}

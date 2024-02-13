@@ -2,8 +2,8 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import argentBankLogo from '../../assets/images/argentBankLogo.png';
-import auth_service from '../../actions/userAction';
-import { logoClick } from '../../actions/loginAction';
+import auth_service from '../../redux/actions/userAction';
+import { logoClick } from '../../redux/actions/loginAction';
 
 const Header = () => {
   const user = useSelector(state => state.user); // Assurez-vous que vous extrayez correctement les données de l'utilisateur

@@ -19,7 +19,7 @@ module.exports.createUser = async serviceData => {
       lastName: serviceData.lastName,
       userName: serviceData.userName
     })
-  console.log(newUser)
+    console.log(newUser)
     let result = await newUser.save()
 
     return result
@@ -54,9 +54,9 @@ module.exports.loginUser = async serviceData => {
       throw new Error('User not found!')
     }
 
-    //const isValid =  bcrypt.compare(serviceData.password, user.password)
-    const isValid =  user.password===serviceData.password
-console.log(isValid)
+    const isValid = await bcrypt.compare(serviceData.password, user.password)
+
+    console.log(isValid)
     if (!isValid) {
       throw new Error('Password is invalid')
     }
