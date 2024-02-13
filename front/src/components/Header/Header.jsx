@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import argentBankLogo from '../../assets/images/argentBankLogo.png';
-import auth_service from '../../redux/actions/userAction';
+import auth_service from '../../redux/services/ApiService';
 import { logoClick } from '../../redux/actions/loginAction';
 
 const Header = () => {
@@ -42,7 +42,7 @@ const Header = () => {
           <div className='main-nav-items'>
             <Link className="main-nav-item" to="/profile">
               <i className="fa fa-user-circle"></i>
-              {user.firstName} {/* Assurez-vous que la clé correspond à celle dans vos données */}
+              {user.userName} {/* Assurez-vous que la clé correspond à celle dans vos données */}
             </Link>
             <span className="main-nav-item" onClick={onLogout}>
               <i className="fa fa-sign-out"></i>

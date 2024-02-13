@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import auth_service, { updateProfile } from '../../redux/actions/userAction'; // Importez updateProfile avec l'alias auth_service
+import auth_service, { updateProfile } from '../../redux/services/ApiService'; // Importez updateProfile avec l'alias auth_service
 
 const EditName = () => {
     const firstName = useSelector((state) => state.user.firstName);
