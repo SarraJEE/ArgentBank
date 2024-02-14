@@ -28,12 +28,18 @@ const userSlice = createSlice({
             });
         },
         userUpdateSuccess: (state, action) => {
-            Object.assign(state, action.payload.body); // Mettre à jour les propriétés de l'utilisateur
-            state.error = null;
-        },
+            return {
+             ...state, // Copiez d'abord toutes les propriétés de l'état actuel
+            ...action.payload.body, // Mettez à jour les propriétés de l'utilisateur
+            // state.userName = action.payload.userName,
+              //Object.assign(state, action.payload.body),
+              error: null, // Réinitialisez l'erreur à null
+            };
+          },
         userUpdateFail: (state, action) => {
             state.error = action.payload.message;
         },
+        
        
     },
 });
@@ -44,6 +50,7 @@ export const {
     userLogout,
     userUpdateSuccess,
     userUpdateFail,
+    updateUserName,
 } = userSlice.actions;
 
 export const userReducer = userSlice.reducer;

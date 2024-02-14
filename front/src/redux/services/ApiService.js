@@ -1,6 +1,6 @@
 import axios from "axios";
 import { loginFail, loginSuccess, logoutSuccess, isToken } from "../actions/loginAction";
-import { userFail, userLogout, userSuccess,userUpdateSuccess,userUpdateFail } from "../actions/userAction";
+import { userFail, userLogout, userSuccess, userUpdateSuccess, userUpdateFail } from "../actions/userAction";
 
 
 //partie Api
@@ -58,19 +58,20 @@ export const userProfile = (value_token) => (dispatch) => {
  */
 
 export const updateProfile = (userName, value_token) => (dispatch) => {
-    const token= localStorage.getItem("token") !== null ? localStorage.getItem("token").slice(1,localStorage.getItem("token").length-1) : value_token;
+    const token = localStorage.getItem("token") !== null ? localStorage.getItem("token").slice(1, localStorage.getItem("token").length - 1) : value_token;
     axios.put(BASE_URL + "/user/profile",
         { userName: userName },
-        { headers: { "Authorization": `Bearer ${token}` } 
-    })
-    .then((res)=>{
-        dispatch(userUpdateSuccess(res.data))
-        console.log(res.data)
-    })
-    .catch((err)=>{
-        dispatch(userUpdateFail(err.response))
-    })
- }
+        {
+            headers: { "Authorization": `Bearer ${token}` }
+        })
+        .then((res) => {
+            dispatch(userUpdateSuccess(res.data))
+            console.log("dattataat reponse",res.data)
+        })
+        .catch((err) => {
+            dispatch(userUpdateFail(err.response))
+        })
+}
 
 
 /**

@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import auth_service, { updateProfile } from '../../redux/services/ApiService'; // Importez updateProfile avec l'alias auth_service
+import { updateProfile } from '../../redux/services/ApiService'; 
+// Importez updateProfile avec l'alias auth_service
 
 const EditName = () => {
+   
     const firstName = useSelector((state) => state.user.firstName);
     const lastName = useSelector((state) => state.user.lastName);
     const userName = useSelector((state) => state.user.userName);
@@ -14,15 +16,17 @@ const EditName = () => {
     const submit = (e) => {
         e.preventDefault();
         dispatch(updateProfile(newUserName, token)); // Utilisez directement updateProfile ici
-        setNewUserName(''); // Réinitialisez le champ d'entrée du nouveau nom d'utilisateur après la soumission
+        setNewUserName('');
         showEdit(false);
     };
-
     useEffect(() => {
-        if (token !== null) {
-            dispatch(auth_service.userProfile(token));
-        }
-    }, [token, dispatch]);
+		/* It's setting the newFirstName state to the userFirstName and the newLastName state to the
+		userLastName. */
+		setNewUserName(userName);
+		
+	}, [userName]);
+
+   
 
     return (
         <div className="header">
@@ -32,14 +36,14 @@ const EditName = () => {
                     <form className='edit-inputs-buttons' onSubmit={submit}>
                         <div className='edit-inputs'>
                             <label>User name</label>
-                            <input className='edit-input' onChange={(e) => { setNewUserName(e.target.value) }} placeholder={userName} required />
+                            <input className='edit-input' onChange={(e) => { setNewUserName(e.target.value) }} placeholder={newUserName} required />
                             <label >First name</label>
                             <input type="text" className='edit-input' placeholder={firstName} disabled />
                             <label>Last name</label>
                             <input type="text" className='edit-input' placeholder={lastName} disabled />
                         </div>
                         <div className='edit-buttons'>
-                            <button className='edit-button-option' type='submit'>Save</button>
+                            <button className='edit-button-option' type='submit'  >Save</button>
                             <button className='edit-button-option' onClick={() => { showEdit(false) }}>Cancel</button>
                         </div>
                     </form>

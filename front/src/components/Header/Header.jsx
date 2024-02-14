@@ -6,8 +6,9 @@ import auth_service from '../../redux/services/ApiService';
 import { logoClick } from '../../redux/actions/loginAction';
 
 const Header = () => {
-  const user = useSelector(state => state.user); // Assurez-vous que vous extrayez correctement les données de l'utilisateur
-  const isAuth = useSelector(state => state.login.isAuth);
+  //const user = useSelector(state => state.user); // Assurez-vous que vous extrayez correctement les données de l'utilisateur
+  const isAuth = useSelector(state => state.login.isAuth)
+  const userName = useSelector(state => state.user.userName);
   const dispatch = useDispatch();
   const navigate = useNavigate();
  
@@ -42,7 +43,7 @@ const Header = () => {
           <div className='main-nav-items'>
             <Link className="main-nav-item" to="/profile">
               <i className="fa fa-user-circle"></i>
-              {user.userName} {/* Assurez-vous que la clé correspond à celle dans vos données */}
+              {userName} {/* Assurez-vous que la clé correspond à celle dans vos données */}
             </Link>
             <span className="main-nav-item" onClick={onLogout}>
               <i className="fa fa-sign-out"></i>

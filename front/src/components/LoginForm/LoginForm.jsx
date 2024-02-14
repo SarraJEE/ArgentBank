@@ -20,10 +20,17 @@ const LoginForm = () => {
   
   const submitForm = (e) => {
     e.preventDefault();
+    rememberMe ? localStorage.setItem("userEmail", email) : localStorage.removeItem("userEmail");
     // Utilisez la valeur de rememberMe dans la fonction login
     dispatch(auth_service.login(email, password, rememberMe));
   }
-
+/**
+	 * When the user clicks the checkbox, the value of the checkbox is set to the opposite of what it was
+	 * before.
+	 */
+	const handleRememberMe = () => {
+		setRememberMe(!rememberMe);
+	};
   useEffect(()=>{
     if(token !== null || localStorage.getItem('token') !== null){
       navigate('/profile')
@@ -44,7 +51,7 @@ const LoginForm = () => {
           <input type="password" id="password" onChange={(e) => { setPassword(e.target.value)}} />
         </div>
         <div className="input-remember">
-          <input type="checkbox" id="remember-me" onChange={(e) => setRememberMe(e.target.checked)} />
+          <input type="checkbox" id="remember-me" checked={rememberMe} onChange={handleRememberMe}/>
           <label htmlFor="remember-me">Remember me</label>
         </div>
         <button className="sign-in-button" type='submit'>Sign In</button>
