@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateProfile } from '../../redux/services/ApiService'; 
-// Importez updateProfile avec l'alias auth_service
 
 const EditName = () => {
    
@@ -30,7 +29,7 @@ const EditName = () => {
 
     return (
         <div className="header">
-            <h1>{edit ? 'Edit user info' : `Welcome back ${firstName} ${lastName}`}</h1>
+            <h1>{edit ? 'Edit user info' : <>Welcome back <br /> {firstName} {lastName}</>}</h1>
             {
                 edit ?
                     <form className='edit-inputs-buttons' onSubmit={submit}>

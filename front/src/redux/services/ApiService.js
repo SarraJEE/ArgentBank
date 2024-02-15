@@ -19,20 +19,24 @@ export const login = (email, password, rememberMe) => (dispatch) => {
     axios.post(BASE_URL + "/user/login", { email, password })
         .then((response) => {
             const token = response.data.body.token;
-            if (!rememberMe) {
-                localStorage.setItem("token", JSON.stringify(token));
+            if (rememberMe) {
+                localStorage.setItem("token", JSON.stringify(token)); // Stocker dans le localStorage si Remember me est coché
+                localStorage.setItem("userEmail", email); // Stocker l'e-mail
+                localStorage.setItem("userPassword", password); // Stocker le mot de passe
             } else {
-                sessionStorage.setItem("token", JSON.stringify(token));
+                sessionStorage.setItem("token", JSON.stringify(token)); // Stocker dans la sessionStorage sinon
+                localStorage.removeItem("userEmail"); // Supprimer l'e-mail du localStorage
+                localStorage.removeItem("userPassword"); // Supprimer le mot de passe du localStorage
             }
             dispatch(loginSuccess(response.data));
             console.log(response)
             return response.data;
-
         })
         .catch((err) => {
             dispatch(loginFail(err.response.data.message));
         });
 };
+
 
 /**
  * Get user profile
