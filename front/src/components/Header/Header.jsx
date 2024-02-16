@@ -14,7 +14,7 @@ const Header = () => {
  
   const onLogout = () => {
     dispatch(auth_service.logout());
-    navigate('/');
+    navigate('/login');
   };
 
   const onLogoClick = () => {

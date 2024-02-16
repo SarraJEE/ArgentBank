@@ -1,53 +1,64 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { updateProfile } from '../../redux/services/ApiService'; 
+import { updateProfile } from '../../redux/services/ApiService';
 
-const EditName = () => {
-   
-    const firstName = useSelector((state) => state.user.firstName);
-    const lastName = useSelector((state) => state.user.lastName);
-    const userName = useSelector((state) => state.user.userName);
+const EditName = ({ onEdit }) => {
+    const firstName = useSelector(state => state.user.firstName);
+    const lastName = useSelector(state => state.user.lastName);
+    const userName = useSelector(state => state.user.userName);
     const [edit, showEdit] = useState(false);
     const dispatch = useDispatch();
-    const token = useSelector((state) => state.login.token);
+    const token = useSelector(state => state.login.token);
     const [newUserName, setNewUserName] = useState('');
 
     const submit = (e) => {
         e.preventDefault();
-        dispatch(updateProfile(newUserName, token)); // Utilisez directement updateProfile ici
+        dispatch(updateProfile(newUserName, token));
         setNewUserName('');
         showEdit(false);
-    };
-    useEffect(() => {
-		/* It's setting the newFirstName state to the userFirstName and the newLastName state to the
-		userLastName. */
-		setNewUserName(userName);
-		
-	}, [userName]);
+        onEdit(false);
 
-   
+    };
+
+    useEffect(() => {
+        setNewUserName(userName);
+    }, [userName]);
 
     return (
         <div className="header">
-            <h1>{edit ? 'Edit user info' : <>Welcome back <br /> {firstName} {lastName}</>}</h1>
+            <h1 className={`header ${edit ? 'editing' : ''}`}>
+                {edit ? 'Edit user info' : <>Welcome back <br /> {firstName} {lastName}</>}
+            </h1>
+
             {
                 edit ?
                     <form className='edit-inputs-buttons' onSubmit={submit}>
                         <div className='edit-inputs'>
-                            <label>User name</label>
-                            <input className='edit-input' onChange={(e) => { setNewUserName(e.target.value) }} placeholder={newUserName} required />
-                            <label >First name</label>
-                            <input type="text" className='edit-input' placeholder={firstName} disabled />
-                            <label>Last name</label>
-                            <input type="text" className='edit-input' placeholder={lastName} disabled />
+                            <div className='edit-input-group'>
+                                <label>User name :</label>
+                                <input
+                                    className='edit-input'
+                                    onChange={(e) => { setNewUserName(e.target.value) }}
+                                    value={newUserName}
+                                    required
+                                />
+                            </div>
+                            <div className='edit-input-group'>
+                                <label>First name :</label>
+                                <input type="text" className='edit-input' value={firstName} disabled />
+                            </div>
+                            <div className='edit-input-group'>
+                                <label>Last name :</label>
+                                <input type="text" className='edit-input' value={lastName} disabled />
+                            </div>
                         </div>
                         <div className='edit-buttons'>
-                            <button className='edit-button-option' type='submit'  >Save</button>
-                            <button className='edit-button-option' onClick={() => { showEdit(false) }}>Cancel</button>
+                            <button className='edit-button-option' type='submit'>Save</button>
+                            <button className='edit-button-option' onClick={() => { showEdit(false); onEdit(false); }}>Cancel</button>
                         </div>
                     </form>
                     :
-                    <button className="edit-button" onClick={() => { showEdit(true) }}>Edit Name</button>
+                    <button className="edit-button" onClick={() => { showEdit(true); onEdit(true); }}>Edit Name</button>
             }
         </div>
     )

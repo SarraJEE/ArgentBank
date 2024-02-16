@@ -59,6 +59,12 @@ body {
 	background-color: #12002b;
 }
 
+.editing {
+	background-color: #fff;
+	/* Arrière-plan blanc */
+	color: black;
+}
+
 .sr-only {
 	border: 0 !important;
 	clip: rect(1px, 1px, 1px, 1px) !important;
@@ -269,6 +275,15 @@ body {
 			}
 		}
 	}
+
+	&.editing {
+		/* Déplacez ce sélecteur à l'intérieur du bloc .account */
+		/* Styles lorsque le composant est en mode édition */
+		background-color: black;
+		/* Changez la couleur de fond selon vos préférences */
+		color: white;
+		/* Changez la couleur du texte selon vos préférences */
+	}
 }
 
 .edit-button {
@@ -283,7 +298,9 @@ body {
 	color: #fff;
 	margin-bottom: 2rem;
 }
-
+.editing.header {
+	color: black; /* Titre en noir lorsque le mode édition est activé */
+  }
 .transaction-button {
 	display: block;
 	width: 100%;
@@ -298,6 +315,11 @@ body {
 	@media (min-width: 720px) {
 		width: 200px;
 	}
+}
+
+.chevron-icon {
+	color: #fff;
+	font-size: 45px;
 }
 
 .section-error {
@@ -316,33 +338,65 @@ body {
 	}
 }
 
-//*formulaire edit name
+//formulaire edit userName
+.edit-button-option {
+	border-radius: 5px;
+	border-color: #00bc77;
+	text-align: center;
+	width: 100px;
+	background-color: #00bc77;
+	color: #fff;
+	height: 30px;
+	border: 1px solid;
+	cursor: pointer;
+}
+
+.edit-input-group {
+	margin-bottom: 10px;
+	/* Ajoutez l'espace souhaité entre chaque paire label-input */
+	color: #222;
+}
+
+.edit-inputs-buttons {
+	display: flex;
+	flex-direction: column;
+	row-gap: .5rem;
+	align-items: center;
+}
+
+
 .edit-inputs {
 	display: flex;
 	flex-direction: column;
-	width: 100%;
-	justify-content: center;
-	align-items: center;
-	gap: 10px;
+	column-gap: .5rem;
 }
-.edit-buttons{
+
+
+.edit-input {
+	border-radius: 5px;
+	border-color: #222;
+	width: 130px;
+	height: 30px;
+	padding-left: .5rem;
+	font-size: 14px;
+}
+
+
+.edit-buttons {
 	display: flex;
 	flex-direction: row;
-	justify-content: center;
-	align-items: center;
-	gap: 10px;
-	
+	column-gap: .5rem;
 }
-.edit-button-option{
-	display: block;
-	width: 10%;
-	padding: 8px;
-	font-size: 1.1rem;
-	font-weight: bold;
-	margin-top: 1rem;
+
+
+.edit-button-option {
+	border-radius: 5px;
 	border-color: #00bc77;
+	text-align: center;
+	width: 100px;
 	background-color: #00bc77;
 	color: #fff;
-	border-radius: 5%;
-
+	height: 30px;
+	border: 1px solid;
+	cursor: pointer;
 }
