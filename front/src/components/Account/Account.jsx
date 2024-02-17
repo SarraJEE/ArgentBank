@@ -12,7 +12,7 @@ function Account(props) {
     return (
         <section className={`account ${props.editing ? 'editing' : ''}`}>
             <div className="account-content-wrapper">
-                <h3 className="account-title">Argent Bank {ACCOUNT_TITLE}</h3>
+                <h2 className="account-title">Argent Bank {ACCOUNT_TITLE}</h2>
                 <p className="account-amount">${ACCOUNT_AMOUNT_FORMAT}</p>
                 <p className="account-amount-description">{ACCOUNT_AMOUNT_DESCRIPTION} Balance</p>
             </div>
