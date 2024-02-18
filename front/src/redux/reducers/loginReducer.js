@@ -5,11 +5,11 @@ const loginState = {
     token: localStorage.getItem("token"),
     isAuth: false,
     error: null,
-    logoClick: null,
+    logoClick:false,
 };
 
 // Login slice
-const loginAction = createSlice({
+const loginSlice = createSlice({
     name: "login",
     initialState: loginState,
     reducers: {
@@ -37,6 +37,6 @@ const loginAction = createSlice({
     },
 });
 
-export const { loginSuccess, loginFail, logoutSuccess, isToken, logoClick } = loginAction.actions;
-export const loginReducer = loginAction.reducer;
+export const { loginSuccess, loginFail, logoutSuccess, isToken, logoClick } = loginSlice.actions;
+export const loginReducer = loginSlice.reducer;
 

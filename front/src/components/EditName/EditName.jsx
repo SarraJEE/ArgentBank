@@ -25,7 +25,7 @@ const EditName = ({ onEdit }) => {
 
   return (
     <div className="header">
-      <h1 className={`header ${edit ? "editing" : ""}`}>
+      <h2 className={`header ${edit ? "editing" : ""}`}>
         {edit ? (
           "Edit user info"
         ) : (
@@ -33,19 +33,17 @@ const EditName = ({ onEdit }) => {
             Welcome back <br /> {firstName} {lastName}
           </>
         )}
-      </h1>
+      </h2>
 
       {edit ? (
         <form className="edit-inputs-buttons" onSubmit={submit}>
           <div className="edit-inputs">
             <div className="edit-input-group">
-              <label for="user name ">
-                User name :
-              </label>
+              <label htmlFor="username">User name:</label>
               <input
-                 type="text"
-                 id="user name"
-                 name="user name"
+                type="text"
+                id="username"
+                name="username"
                 className="edit-input"
                 onChange={(e) => {
                   setNewUserName(e.target.value);
@@ -55,9 +53,7 @@ const EditName = ({ onEdit }) => {
               />
             </div>
             <div className="edit-input-group">
-              <label  for="First name">
-                First name :
-              </label>
+              <label htmlFor="First name">First name :</label>
               <input
                 type="text"
                 id="First name"
@@ -67,9 +63,7 @@ const EditName = ({ onEdit }) => {
               />
             </div>
             <div className="edit-input-group">
-              <label for="Last name">
-                Last name :
-              </label>
+              <label htmlFor="Last name">Last name :</label>
               <input
                 type="text"
                 id="Last name"

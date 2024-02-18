@@ -277,12 +277,10 @@ body {
 	}
 
 	&.editing {
-		/* Déplacez ce sélecteur à l'intérieur du bloc .account */
-		/* Styles lorsque le composant est en mode édition */
-		background-color: black;
-		/* Changez la couleur de fond selon vos préférences */
+		background-color: #3d3d3d;
+		border: 1px solid  #3d3d3d;
+		border-radius: 5px;
 		color: white;
-		/* Changez la couleur du texte selon vos préférences */
 	}
 }
 
@@ -299,7 +297,7 @@ body {
 	margin-bottom: 2rem;
 }
 .editing.header {
-	color: black; /* Titre en noir lorsque le mode édition est activé */
+	color:#404040 ;/* Titre en noir lorsque le mode édition est activé */
   }
 .transaction-button {
 	display: block;
@@ -374,14 +372,17 @@ body {
 
 .edit-input {
 	border-radius: 5px;
-	border-color: #222;
-	width: 130px;
-	height: 30px;
-	padding-left: .5rem;
-	font-size: 14px;
+    border-color: #e7e7e7;
+    width: 130px;
+    background-color: #e7e7e7;
+    height: 30px;
+    padding-left: 0.5rem;
+    font-size: 14px;
 }
 
-
+input#username {
+	background-color: #fff;
+}
 .edit-buttons {
 	display: flex;
 	flex-direction: row;
@@ -393,7 +394,7 @@ body {
 	border-radius: 5px;
 	border-color: #00bc77;
 	text-align: center;
-	width: 100px;
+	width: 115px;
 	background-color: #00bc77;
 	color: #fff;
 	height: 30px;
