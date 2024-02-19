@@ -1,35 +1,44 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import auth_service from '../../redux/services/ApiService';
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import auth_service from "../../redux/services/ApiService";
 
 const LoginForm = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
   const dispatch = useDispatch();
-  const navigate = useNavigate(); 
-  const token = useSelector((state)=> state.login.token)
-  const error = useSelector((state)=> state.login.error)
-  
-  useEffect(() => {
-    if (rememberMe && localStorage.getItem('userEmail')) {
-      const savedEmail = localStorage.getItem('userEmail');
-      setEmail(savedEmail);
-    }
-  }, [rememberMe]);
+  const navigate = useNavigate();
+  const token = useSelector((state) => state.login.token);
+  const error = useSelector((state) => state.login.error);
 
+  // useEffect pour pré-remplir les champs d'e-mail et de mot de passe après la déconnexion
   useEffect(() => {
-    if (rememberMe && localStorage.getItem('userPassword')) {
-      const savedPassword = localStorage.getItem('userPassword');
+    const savedEmail = localStorage.getItem("userEmail");
+    const savedPassword = localStorage.getItem("userPassword");
+
+    // Vérifie si la case "Remember me" était cochée lors de la connexion précédente
+    const rememberMeChecked = savedEmail && savedPassword;
+
+    // Si la case "Remember me" était cochée, pré-remplit les champs d'e-mail et de mot de passe
+    if (rememberMeChecked) {
+      setEmail(savedEmail);
       setPassword(savedPassword);
+    } else {
+      // Sinon, réinitialise les champs d'e-mail et de mot de passe
+      setEmail("");
+      setPassword("");
     }
-  }, [rememberMe]);
+  }, [token]); // Exécuter lorsque le token change, c'est-à-dire après la déconnexion
 
   const submitForm = (e) => {
     e.preventDefault();
-    rememberMe ? localStorage.setItem("userEmail", email) : localStorage.removeItem("userEmail");
-    rememberMe ? localStorage.setItem("userPassword", password) : localStorage.removeItem("userPassword");
+    rememberMe
+      ? localStorage.setItem("userEmail", email)
+      : localStorage.removeItem("userEmail");
+    rememberMe
+      ? localStorage.setItem("userPassword", password)
+      : localStorage.removeItem("userPassword");
     dispatch(auth_service.login(email, password, rememberMe));
   };
 
@@ -38,8 +47,8 @@ const LoginForm = () => {
   };
 
   useEffect(() => {
-    if (token !== null || localStorage.getItem('token') !== null) {
-      navigate('/profile');
+    if (token !== null || localStorage.getItem("token") !== null) {
+      navigate("/profile");
     }
   }, [token, navigate]);
 
@@ -50,18 +59,35 @@ const LoginForm = () => {
       <form onSubmit={submitForm}>
         <div className="input-wrapper">
           <label htmlFor="email">Email</label>
-          <input type="text" id="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+          <input
+            type="text"
+            id="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
         </div>
         <div className="input-wrapper">
           <label htmlFor="password">Password</label>
-          <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+          <input
+            type="password"
+            id="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
         </div>
         <div className="input-remember">
-          <input type="checkbox" id="remember-me" checked={rememberMe} onChange={handleRememberMe} />
+          <input
+            type="checkbox"
+            id="remember-me"
+            checked={rememberMe}
+            onChange={handleRememberMe}
+          />
           <label htmlFor="remember-me">Remember me</label>
         </div>
-        <button className="sign-in-button" type='submit'>Sign In</button>
-        {error !== null ? <label className='error'>{error}</label> : ""}
+        <button className="sign-in-button" type="submit">
+          Sign In
+        </button>
+        {error !== null ? <label className="error">{error}</label> : ""}
       </form>
     </section>
   );
