@@ -18,6 +18,7 @@ const PrivateRouteComponent = memo(({ element, ...props }) => {
   );
 });
 
+
 const App = () => {
   return (
     <BrowserRouter>

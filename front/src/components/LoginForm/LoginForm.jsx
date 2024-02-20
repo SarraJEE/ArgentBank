@@ -32,7 +32,7 @@ const LoginForm = () => {
       setPassword("");
       setRememberMe(false);
     }
-  }, [token]); // Exécuter lorsque le token change, c'est-à-dire après la déconnexion
+  }, []);
 
   const submitForm = (e) => {
     e.preventDefault();

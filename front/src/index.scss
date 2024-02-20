@@ -54,7 +54,9 @@ body {
 		}
 	}
 }
-
+.fa{
+	margin: 5px;
+}
 .bg-dark {
 	background-color: #12002b;
 }
@@ -91,7 +93,7 @@ body {
 	height: 300px;
 
 	@media (min-width: 920px) {
-		height: 400px;
+		height: 430px;
 		background-position: 0% 33%;
 	}
 
