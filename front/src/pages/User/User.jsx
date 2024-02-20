@@ -12,7 +12,7 @@ const User = () => {
     const user = useSelector(state => state.user);
     console.log(user)
     // Sélectionnez les données de l'utilisateur depuis le state Redux
-    const token = useSelector(state => state.login.token !== null ? state.login.token : localStorage.getItem('token') !== null ? localStorage.getItem('token') : null);
+    const token = useSelector(state => state.login.token !== null ? state.login.token : localStorage.getItem('token'));
     const navigate = useNavigate();
     const dispatch = useDispatch();
 

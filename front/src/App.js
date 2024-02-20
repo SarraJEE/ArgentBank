@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { memo } from "react";
 import { Routes, Route, BrowserRouter, Navigate } from "react-router-dom";
 import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
@@ -8,15 +8,15 @@ import User from "./pages/User/User";
 import Error from "./pages/Error/Error";
 import { useSelector } from "react-redux";
 
-const PrivateRouteComponent = ({ element, ...props }) => {
+const PrivateRouteComponent = memo(({ element, ...props }) => {
   const isAuth = useSelector((state) => state.login.isAuth);
 
   return isAuth ? (
-    React.cloneElement(element, props) // Utiliser React.cloneElement pour transmettre les props
+    React.cloneElement(element, props)
   ) : (
     <Navigate to="/login" replace />
   );
-};
+});
 
 const App = () => {
   return (

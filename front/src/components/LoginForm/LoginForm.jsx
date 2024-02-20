@@ -24,10 +24,13 @@ const LoginForm = () => {
     if (rememberMeChecked) {
       setEmail(savedEmail);
       setPassword(savedPassword);
+      setRememberMe(true); // Coche le bouton "Remember me"
+      
     } else {
       // Sinon, réinitialise les champs d'e-mail et de mot de passe
       setEmail("");
       setPassword("");
+      setRememberMe(false);
     }
   }, [token]); // Exécuter lorsque le token change, c'est-à-dire après la déconnexion
 

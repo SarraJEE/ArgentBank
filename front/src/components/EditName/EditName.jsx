@@ -22,7 +22,7 @@ const EditName = ({ onEdit }) => {
   useEffect(() => {
     setNewUserName(userName);
   }, [userName]);
-
+  
   return (
     <div className="header">
       <h2 className={`header ${edit ? "editing" : ""}`}>
@@ -80,6 +80,7 @@ const EditName = ({ onEdit }) => {
             <button
               className="edit-button-option"
               onClick={() => {
+                setNewUserName(userName);
                 showEdit(false);
                 onEdit(false);
               }}
