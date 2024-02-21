@@ -89,5 +89,4 @@ export const logout = () => (dispatch) => {
 };
 
 const auth_service = { login, userProfile, logout };
-
 export default auth_service;

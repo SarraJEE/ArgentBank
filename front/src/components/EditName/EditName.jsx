@@ -20,8 +20,10 @@ const EditName = ({ onEdit }) => {
   };
 
   useEffect(() => {
-    setNewUserName(userName);
-  }, [userName]);
+    if (!edit) {
+        setNewUserName(userName);
+    }
+}, [edit, userName]);
   
   return (
     <div className="header">

@@ -283,6 +283,9 @@ body {
 		border: 1px solid  #3d3d3d;
 		border-radius: 5px;
 		color: white;
+		@media (max-width: 720px) {
+			flex-direction: row;
+		}
 	}
 }
 
