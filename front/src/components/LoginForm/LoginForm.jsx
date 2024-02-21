@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import auth_service from "../../redux/services/ApiService";
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import auth_service from '../../redux/services/ApiService';
+
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
@@ -20,19 +21,18 @@ const LoginForm = () => {
     // Vérifie si la case "Remember me" était cochée lors de la connexion précédente
     const rememberMeChecked = savedEmail && savedPassword;
 
-    // Si la case "Remember me" était cochée, pré-remplit les champs d'e-mail et de mot de passe
+    /***  Si la case "Remember me" était cochée, pré-remplit les champs d'e-mail et de mot de passe ***/
     if (rememberMeChecked) {
       setEmail(savedEmail);
       setPassword(savedPassword);
-      setRememberMe(true); // Coche le bouton "Remember me"
-      
+      setRememberMe(true); 
     } else {
-      // Sinon, réinitialise les champs d'e-mail et de mot de passe
+      /***  Sinon, réinitialise les champs d'e-mail et de mot de passe ***/
       setEmail("");
       setPassword("");
       setRememberMe(false);
     }
-  }, []);
+  }, [token]); /*** Exécuter lorsque le token change, c'est-à-dire après la déconnexion ***/
 
   const submitForm = (e) => {
     e.preventDefault();
