@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import auth_service from '../../redux/services/ApiService';
 
-
 const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -12,7 +11,7 @@ const LoginForm = () => {
   const navigate = useNavigate();
   const token = useSelector((state) => state.login.token);
   const error = useSelector((state) => state.login.error);
-
+  const isAuth = useSelector((state) => state.login.isAuth);
   // useEffect pour pré-remplir les champs d'e-mail et de mot de passe après la déconnexion
   useEffect(() => {
     const savedEmail = localStorage.getItem("userEmail");
@@ -26,13 +25,21 @@ const LoginForm = () => {
       setEmail(savedEmail);
       setPassword(savedPassword);
       setRememberMe(true); 
+    
+     
     } else {
       /***  Sinon, réinitialise les champs d'e-mail et de mot de passe ***/
       setEmail("");
       setPassword("");
       setRememberMe(false);
     }
-  }, [token]); /*** Exécuter lorsque le token change, c'est-à-dire après la déconnexion ***/
+    if (isAuth) {
+      navigate('/profile');
+  } else {
+      console.log("User not authenticated.");
+      // Optionally handle the case where user is not authenticated
+  }
+  }, [token,navigate,isAuth]); /*** Exécuter lorsque le token change, c'est-à-dire après la déconnexion ***/
 
   const submitForm = (e) => {
     e.preventDefault();
@@ -43,17 +50,11 @@ const LoginForm = () => {
       ? localStorage.setItem("userPassword", password)
       : localStorage.removeItem("userPassword");
     dispatch(auth_service.login(email, password, rememberMe));
+   
   };
-
   const handleRememberMe = () => {
     setRememberMe(!rememberMe);
   };
-
-  useEffect(() => {
-    if (token !== null || localStorage.getItem("token") !== null) {
-      navigate("/profile");
-    }
-  }, [token, navigate]);
 
   return (
     <section className="sign-in-content">
@@ -87,7 +88,7 @@ const LoginForm = () => {
           />
           <label htmlFor="remember-me">Remember me</label>
         </div>
-        <button className="sign-in-button" type="submit">
+        <button className="sign-in-button">
           Sign In
         </button>
         {error !== null ? <label className="error">{error}</label> : ""}

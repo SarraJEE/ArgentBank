@@ -6,7 +6,6 @@ import auth_service from '../../redux/services/ApiService';
 import { dataAccounts } from '../../data/data';
 import EditName from '../../components/EditName/EditName';
 
-
 const User = () => {
     document.title = "Argent Bank - User Page";
     const user = useSelector(state => state.user);
