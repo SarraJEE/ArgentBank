@@ -37,7 +37,7 @@ const LoginForm = () => {
       navigate('/profile');
   } else {
       console.log("User not authenticated.");
-      // Optionally handle the case where user is not authenticated
+      
   }
   }, [token,navigate,isAuth]); /*** Exécuter lorsque le token change, c'est-à-dire après la déconnexion ***/
 
